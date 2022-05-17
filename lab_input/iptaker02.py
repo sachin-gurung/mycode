@@ -14,6 +14,11 @@ def main():
     print("You told me the IPv4 address is:", user_input)
     
     user_input2 = input("What is the vendor name?")
-    print("The new vendor is ", user_input2)
+    print("The new vendor is", user_input2)
+
+    # bonus challenge
+    user_input3 = input("User name: ")
+    user_input4 = input("What day of the week is today? ")
+    print("Hello,", user_input3 + "! Happy",user_input4 + "!")
 main()
 
