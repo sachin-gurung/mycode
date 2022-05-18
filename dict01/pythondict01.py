@@ -47,3 +47,7 @@ switch["password"] = "qwerty"
 print( switch.keys() )
 print( switch.values() )
 
+switch["fav_food"] = "chimichangas"
+print(switch.keys())
+choice = input("Pick a key from the list: ")
+print(f"Captain America's fav_food is: {choice}")
