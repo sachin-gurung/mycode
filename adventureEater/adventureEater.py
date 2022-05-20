@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Adventure Eater - My mini project"""
 import pyfiglet
-pyfiglet.print_figlet("Adventure   Eater")
+pyfiglet.print_figlet("Adventure  Eater")
  
 def main():
     count = 0
