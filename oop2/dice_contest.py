@@ -11,11 +11,13 @@ def main():
     # the player known as the swapper
     swapper = Cheat_Swapper()
     # the player known as the loaded_dice
-    loaded_dice = Cheat_Loaded_Dice()
+    #loaded_dice = Cheat_Loaded_Dice()
+    first_roll_is_one = First_Dice_Is_One()
 
     # track scores for both players
     swapper_score = 0
-    loaded_dice_score = 0
+    #loaded_dice_score = 0
+    first_roll_is_one_score = 0
 
     # how many games we want to run
     number_of_games = 100000
@@ -26,10 +28,12 @@ def main():
     print("==================")
     while game_number < number_of_games:
         swapper.roll()
-        loaded_dice.roll()
+        #loaded_dice.roll()
+        first_roll_is_one.roll()
 
         swapper.cheat()
-        loaded_dice.cheat()
+        #loaded_dice.cheat()
+        first_roll_is_one.cheat()
         """Remove # before print statements to see simulation running
            Simulation takes approximately one hour to run with print
            statements or ten seconds with print statements
@@ -37,15 +41,28 @@ def main():
 
         #print("Cheater 1 rolled" + str(swapper.get_dice()))
         #print("Cheater 2 rolled" + str(loaded_dice.get_dice()))
-        if sum(swapper.get_dice()) == sum(loaded_dice.get_dice()):
+        #if sum(swapper.get_dice()) == sum(loaded_dice.get_dice()):
+            #print("Draw!")
+            #pass
+        #elif sum(swapper.get_dice()) > sum(loaded_dice.get_dice()):
+            #print("Dice swapper wins!")
+            #swapper_score+= 1
+        #else:
+            #print("Loaded dice wins!")
+            #loaded_dice_score += 1
+        #game_number += 1
+
+        ##############################################################
+
+        if sum(swapper.get_dice()) == sum(first_roll_is_one.get_dice()):
             #print("Draw!")
             pass
-        elif sum(swapper.get_dice()) > sum(loaded_dice.get_dice()):
+        elif sum(swapper.get_dice()) > sum(first_roll_is_one.get_dice()):
             #print("Dice swapper wins!")
             swapper_score+= 1
         else:
             #print("Loaded dice wins!")
-            loaded_dice_score += 1
+            first_roll_is_one_score += 1
         game_number += 1
 
     # the game has ended
@@ -54,15 +71,16 @@ def main():
     print("Final scores")
     print("------------")
     print(f"Swapper won: {swapper_score}")
-    print(f"Loaded dice won: {loaded_dice_score}")
-
+    #print(f"Loaded dice won: {loaded_dice_score}")
+    print(f"first roll one dice won: {first_roll_is_one_score}")
     # determine the winner
-    if swapper_score == loaded_dice_score:
+    if swapper_score == first_roll_is_one_score: #loaded_dice_score:
         print("Game was drawn")
-    elif swapper_score > loaded_dice_score:
+    elif swapper_score > first_roll_is_one_score: #loaded_dice_score:
         print("Swapper won most games")
     else:
-        print("Loaded dice won most games")
+        print("first roll one won most games")
+        #print("Loaded dice won most games")
 
 if __name__ == "__main__":
     main()

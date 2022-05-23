@@ -31,3 +31,9 @@ class Cheat_Loaded_Dice(Player): # inheritance of Player
               self.dice[i] += 1
           i += 1
 
+# Creating my own cheater dice
+class First_Dice_Is_One(Player):
+    def cheat(self):
+        self.dice[0] = 1
+
+
