@@ -13,6 +13,8 @@ Commands:
   get [item]
 ''')
 
+
+
 def showStatus():
   #print the player's current status
   print('---------------------------')
@@ -20,9 +22,19 @@ def showStatus():
   #print the current inventory
   print('Inventory : ' + str(inventory))
   #print an item if there is one
+  if currentRoom == 'Bonus Room':
+    kanyeWestQuotes()
   if "item" in rooms[currentRoom]:
     print('You see a ' + rooms[currentRoom]['item'])
   print("---------------------------")
+
+
+#Implementing Kanye Rest API
+def kanyeWestQuotes():
+  response = requests.get("https://api.kanye.rest").json()
+  quote = response["quote"]
+  print(quote)
+  
 
 #an inventory, which is initially empty
 inventory = []
@@ -67,7 +79,7 @@ rooms = {
             'Master Bedroom' : {
                   'south' : 'Guest Room',
                   'east' : 'Bonus Room',
-                  'item' : 'masterkey',
+                  'item' : ['masterkey', 'diamond'],
             },
             'Guest Room' : {
                   'east' : 'Hall',
@@ -86,10 +98,12 @@ currentRoom = 'Hall'
 
 showInstructions()
 
+
 #loop forever
 while True:
 
   showStatus()
+  
 
   #get the player's next 'move'
   #.split() breaks it up into an list array
@@ -127,7 +141,7 @@ while True:
     else:
       #tell them they can't get it
       print('Can\'t get ' + move[1] + '!')
-      
+
   ## Define how a player can win
   if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
     print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
