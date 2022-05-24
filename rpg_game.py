@@ -13,7 +13,14 @@ Commands:
   get [item]
 ''')
 
-
+#def getDirections():
+  #print the directions user can go to  
+  #directions = ['east', 'west', 'north', 'south']
+  #actualDirections = []
+  #print(f'You can turn: ')
+  #if directions in rooms[currentRoom]:
+    #for item in directions:
+      #print(item)
 
 def showStatus():
   #print the player's current status
@@ -21,12 +28,19 @@ def showStatus():
   print('You are in the ' + currentRoom)
   #print the current inventory
   print('Inventory : ' + str(inventory))
-  #print an item if there is one
+  #print Kanye West quotes if player is in the Bonus Room 
   if currentRoom == 'Bonus Room':
     kanyeWestQuotes()
+  #print an item if there is one
   if "item" in rooms[currentRoom]:
     print('You see a ' + rooms[currentRoom]['item'])
-  print("---------------------------")
+  print("---------------------------")  
+
+  #if "items" in rooms[currentRoom]:
+    #for item in items:
+      #totalItems = items.append(item)
+      #print("You see " + rooms[currentRoom][totalItems])
+    #print("------------------------------")
 
 
 #Implementing Kanye Rest API
@@ -79,7 +93,7 @@ rooms = {
             'Master Bedroom' : {
                   'south' : 'Guest Room',
                   'east' : 'Bonus Room',
-                  'item' : ['masterkey', 'diamond'],
+                  'item' : 'masterkey', #['masterkey', 'diamond','tv'], # multiple items
             },
             'Guest Room' : {
                   'east' : 'Hall',
@@ -146,12 +160,12 @@ while True:
   if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
     print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
     break
-
+  ## If a player enters a room with a monster and player is carrying a gun
   elif 'gun' in inventory and currentRoom == 'Kitchen':
     print('You got a gun in your pocket. You shot the monster in the head. Now the monster is dead... GAME OVER!')
     break
 
   ## If a player enters a room with a monster
   elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
-    print('A monster has got you... GAME OVER!')
+    print('A monster has got you and you don\'t have a gun... GAME OVER!')
     break
