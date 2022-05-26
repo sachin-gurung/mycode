@@ -33,9 +33,9 @@ def user():
 def anything(name):
     return f"<h1>Welcome {name}<h1>\n"  
 
-# @app.route("/")
-# def jinja():
-#     return render_template("jinja.html")
+@app.route("/<username>")
+def index(username):
+    return render_template("jinjapage.html", name = username)
 
 
 if __name__ == "__main__":

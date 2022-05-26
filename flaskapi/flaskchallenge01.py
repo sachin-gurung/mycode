@@ -1,40 +1,67 @@
+#!/usr/bin/python3
+
 from flask import Flask
 from flask import redirect
 from flask import request
 from flask import render_template
-from flask import url_for
 
 app = Flask(__name__)
 
-@app.route("/")
-@app.route("/home")
-def home():
-    return render_template("flaskchallenge01.html")
+html= """<style>
+body {
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
 
-@app.route("/login", methods = ["POST", "GET"])
-def login():
-    if request.method == "POST":
-        if request.form.get("nm"):
-            user = request.form.get("nm")
-        else:
-            user = "defaultuser"
-    elif request.method == "GET":
-        if request.args.get("nm"):
-            user = request.args.get("nm")
-        else: 
-            user = "defaultuser"
-    return redirect(url_for("home"))
+<h1>TRIVIA TIME</h1>
+<p>What is the meaning of life, the universe, and everything?</p>
+<img src="https://stevetobak.com/wp-content/uploads/2021/02/dont-panic.png" alt="Avatar" style="width:200px">
 
+    <form action = "/login" method = "POST">
+        <p><input type = "text" name = "nm"></p>
+        <p><input type = "submit" value = "submit"></p>
+    </form>
 
-
-@app.route("/answer")
-def answer():
-    return "answer page"
+</body>
+</html>"""
 
 @app.route("/correct")
-def correct():
-    return "correct page"
+def success():
+    return f"That is correct!"
+    # print("Test")
+    # return render_template("flaskchallengecorrectincorrect.html")
+
+@app.route("/incorrect")
+def incorrect():
+    return f"this is incorrect page"
+    # return render_template("flaskchallengecorrectincorrect.html")
+
+@app.route("/")
+def start():
+    return html
+
+# @app.route("/answer/<int:correctanswer>", methods = ["POST"])
+# def hello_name(correctanswer):
+#     # render the template with the value of score for marks
+#     # marks is a jinja var in the template
+#     return render_template("flaskchallengecorrectincorrect2.html", marks = correctanswer)
+
+@app.route("/login", methods = ["POST"])
+def login():
+        if request.form.get("nm") and request.form.get("nm") == "42":
+            return render_template("flaskchallengecorrectincorrect.html")
+            # return redirect("/correct")
+        else:
+            return redirect("/")
+
+@app.route("/<username>")
+def index(username):
+    return render_template("flaskchallenge02.html", name = username)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=2224)
-
+   app.run(host="0.0.0.0", port=2224) # runs the application
