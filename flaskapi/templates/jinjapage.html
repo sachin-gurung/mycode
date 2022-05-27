@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
    <body>
-      {% if name == "Sachin" %}
-      <h1>Hello. Welcome to Jinjapage {{ name }}!</h1>
+      {% if name | lower == "sachin" %}
+      <h1>Hello. Welcome to Jinjapage {{ name }}! You looking awesome today.</h1>
       {% else %}
-      <h1>You are not Sachin! Please get out of this page...</h1>
+      <h1>You are not Sachin! Please get out of this page... LOSER!!!</h1>
       {% endif %}
    </body>
 </html>
